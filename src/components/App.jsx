@@ -5,8 +5,6 @@ import ImageGallery from './ImageGallery';
 import Loader from './Loader';
 import Button from './Button';
 import Modal from './Modal';
-// import ErrorBox from './ErrorBox';
-import PropTypes from 'prop-types';
 
 const PRIVATE_KEY = '29321758-e768d1c89c32410537fe23d2a';
 axios.defaults.baseURL = 'https://pixabay.com/api/';
@@ -40,7 +38,7 @@ export class App extends Component {
     try {
       const response = await axios.get(link);
       this.setState(state => ({allImg: [...state.allImg, ...response.data.hits], isLoading: false }));
-    } catch {}
+    } catch {alert("Error")}
   };
 
   handleLoadMore = () => {
@@ -81,14 +79,3 @@ export class App extends Component {
 }
 
 
-App.propTypes = {
-  state: PropTypes.shape({
-    searchName: PropTypes.string.isRequired,
-    allImg: PropTypes.array,
-    page: PropTypes.number.isRequired,
-    isLoading: PropTypes.bool.isRequired,
-    showModal: PropTypes.bool.isRequired,
-    currentItem: PropTypes.object
-
-  })
-}
